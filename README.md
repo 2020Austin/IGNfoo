@@ -1,8 +1,12 @@
 # IGNfoo
 
 ## SQL Database Creation
+
+#### Normalization
 Given the csv data, we see that the First Normal Form of relational databases is violated, as several columns (genres, published_by, region, etc.) contain composite/multi-valued data.
 - I normalize the database by breaking the many-to-many relationships between media and these multi-valued columns: intermediary/junction tables are created to relate several independent tables instead
+
+#### Indexing and Table Construction
 
 The main media table was indexed by the existing id value within the csv.
 Every other table is indexed by an auto-incrementing integer primary key, indentifying an unique ID value for that table. 
@@ -10,6 +14,7 @@ Junction tables utilize two foreign keys - each referencing the primary key id v
 
 In theory, columns containing small strings were typed as VARCHAR to potentially support faster database searching, but SQLite does not differentiate from TEXT.
 
+#### Security 
 For query construction, I used SQLite's built-in parameterized queries (with "?" value substitution) instead of string concatenation to ensure safety against SQL injection vulnerability.
 
 
@@ -17,6 +22,32 @@ For query construction, I used SQLite's built-in parameterized queries (with "?"
 
 
 ## API Endpoint Creation
+Data fetching API service is provided through a locally-running Flask application. 
+- The local flask app establishes a connection to the previously created SQLite database and executes SQL queries based on endpoint
+- Flask's built-in  ```jsonify``` method is used to convert the results of SQL query into a returnable JSON response
+
+
+#### Endpoints and optional parameters:
+```/rating```
+Uses media table to fetch media names and associated review scores.
+ - ```/rating?sortby=ASC```
+ -- Changes SQL ```ORDER BY``` parameter to sort review score by ascending
+ - ```/rating?sortby=DESC```
+  -- Changes SQL ```ORDER BY``` parameter to sort review score by descending
+
+```/creator```
+Uses mediaCreators junction table and two ```LEFT JOIN``` to connect creators with associated works and review scores
+- ```/creator?calculate=True```
+-- Additionally uses window function  (```AVG()```, partitioned by creator id) to calculate average review scores of each studio (average rating of all of their works)
+
+```/publisher```
+Uses mediaPublishers junction table and two ```LEFT JOIN```, as well as mediaGenres junction table and two  ```INNER JOIN```. Connect publishers with all the genres they've produced works in (must relate publishers with media, then media with genres).
+- ```/publisher?calculate=True```
+-- Additionally uses window function  (```SUM(*)```, partitioned by publisher name) to calculate the number of unique genres published by each publisher
+
+<br>
+
+URL parameters are fetched from HTTPS GET requests with Flask's built-in ```request.args.get``` method.
 
 ## Use
 Ensure python packages outlined in requirements.txt are installed (```venv``` recommended)
