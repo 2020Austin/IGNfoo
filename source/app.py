@@ -7,9 +7,8 @@ Flask web app that provides a data retreival API from the SQLite database create
 '''
 
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from SQLite_database_creation import connect_to_sqlite_db
-from flask import request
 import os
 
 app = Flask(__name__)
@@ -86,7 +85,7 @@ def fetch_types():
     
     if calculate_avg:
         data = c.execute("""
-                SELECT creator.creator, media.name, media.media_type, media.review_score, avg(media.review_score) 
+                SELECT creator.creator, media.name, media.media_type, media.review_score, AVG(media.review_score) 
                 OVER (PARTITION BY mediaCreators.creator_id) AS avg_studio_rating 
                 FROM mediaCreators
                 LEFT JOIN creator
