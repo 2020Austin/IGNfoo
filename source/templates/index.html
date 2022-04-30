@@ -1,0 +1,31 @@
+    <!DOCTYPE html>  
+    <html>  
+    <head>  
+        <title>IGN foo backend API - Flask, sqlite3</title>  
+    </head>  
+	
+    <body>  
+		<h1>IGN FOO Backend - Created by Austin Zang. Running on Flask, sqlite3</h1>
+        <h2>Available API Endpoints: </h2>
+		<h3>(data returned in JSON format)</h3>
+        <a href="/rating">Get Media by Review Score/Ratings</a>
+		<ul>
+		  <li><a href="/rating?sortby=ASC">Sort by Ascending</a></li>
+		  <li><a href="/rating?sortby=DESC">Sort by Descending</a></li>
+		</ul>
+			
+		<br>
+		
+        <a href ="/creator">Get Creators and Associated Works</a>
+		<ul>
+		  <li><a href="/creator?calculate=True">Calculate Average Ratings of Each Creator</a></li>
+		</ul>  
+
+		<br>
+		
+        <a href="/publisher">Get Publishers and Associated Genres</a>
+		<ul>
+		  <li><a href="/publisher?calculate=True">Calculate Number of Unique Genres Published by Publisher</a></li>
+		</ul>  	
+    </body>  
+    </html>  
