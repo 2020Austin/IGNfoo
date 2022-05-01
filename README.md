@@ -1,6 +1,7 @@
 # IGNfoo
 Austin Zang
 IGN Code Foo X Submission - Backend
+Look in "source" directory for code!
 
 python3, flask, sqlite3, pandas
 ## SQL Database Creation
@@ -88,6 +89,8 @@ Existing SQLite database is already included (```ign.db```), but if a new db nee
 ## Bonus Media
 Screenshot of DB structure (viewed with DB Browser for SQLite)
 
-![Screenshot of DB structure, viewed with DB Browser](./Schema.PNG?raw=true)
+![Screenshot of DB structure, viewed with DB Browser](./assets/Schema.PNG?raw=true)
+![index](./assets/Index.PNG?raw=true)
+![response](./assets/json.PNG?raw=true)
 
 
