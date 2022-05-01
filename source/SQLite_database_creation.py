@@ -85,7 +85,7 @@ def create_tables(connection) -> None:
               slug VARCHAR
               );
               ''')
-    
+
     # table of genres
     c.execute('''
               CREATE TABLE IF NOT EXISTS genre(
@@ -389,6 +389,28 @@ def iterate_dataframe(connection, dataframe) -> None:
                         )
         
     connection.commit()
+    
+    
+def create_indexes(connection) -> None:
+    """
+
+    Create necessary indexes for database, to increase performance
+
+    Parameters
+    ----------
+    connection : sqlite connection
+        connection to db
+    """
+    c = connection.cursor()
+    
+    # Create index on media name
+    c.execute("""
+            CREATE INDEX idx_media_name
+            ON media (name); 
+                """)
+    
+    connection.commit()
+        
             
 if __name__ == '__main__':
     
@@ -410,6 +432,9 @@ if __name__ == '__main__':
     
     # iterate through df, populate tables
     iterate_dataframe(ign_conn, ign_df)
+    
+    # create indexes
+    create_indexes(ign_conn)
     
     # pretty print media table for sanity check
     print(pd.read_sql_query("SELECT * FROM media", ign_conn))
