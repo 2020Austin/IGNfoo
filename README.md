@@ -1,5 +1,8 @@
 # IGNfoo
+Austin Zang
+IGN Code Foo X Submission - Backend
 
+python3, flask, sqlite3, pandas
 ## SQL Database Creation
 
 #### Normalization
@@ -12,7 +15,15 @@ The main media table was indexed by the existing id value within the csv.
 Every other table is indexed by an auto-incrementing integer primary key, indentifying an unique ID value for that table. 
 Junction tables utilize two foreign keys - each referencing the primary key id values of the related tables
 
-In theory, columns containing small strings were typed as VARCHAR to potentially support faster database searching, but SQLite does not differentiate from TEXT.
+In theory, columns containing small strings were typed as ```VARCHAR``` to potentially support faster database searching, but SQLite does not differentiate from ```TEXT```.
+Timestamp data points were inserted into columns typed as ```DATETIME```.
+
+
+
+All database table operations (table creation, data insertion, query) are done with sqlite3's ```cursor.execute()```  paired with raw SQL syntax. 
+
+- Data insertion was done by iterating row-by-row through a dataframe of the csv, inserting relevant data points into both regular and junction tables. 
+- Tables that tracked non-repeating data (like all the genres represented in the csv) were given the ```UNIQUE``` constraint
 
 #### Security 
 For query construction, I used SQLite's built-in parameterized queries (with "?" value substitution) instead of string concatenation to ensure safety against SQL injection vulnerability.
@@ -50,7 +61,7 @@ Uses mediaPublishers junction table and two ```LEFT JOIN```, as well as mediaGen
 URL parameters are fetched from HTTPS GET requests with Flask's built-in ```request.args.get``` method.
 
 ## Use
-Ensure python packages outlined in requirements.txt are installed (```venv``` recommended)
+Install python packages outlined in requirements.txt (```venv``` recommended)
 
 ### With terminal open in the project's root directory, run the following:
 #### Unix BASH/ZSH
