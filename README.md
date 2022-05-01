@@ -64,9 +64,10 @@ Uses mediaPublishers junction table and two ```LEFT JOIN```, as well as mediaGen
 URL parameters are fetched from HTTPS GET requests with Flask's built-in ```request.args.get``` method.
 
 ## Use
+Download latest release!
 Install python packages outlined in requirements.txt (```venv``` recommended)
 
-### With terminal open in the project's root directory, run the following:
+### With terminal open in the "IGNfoo-main" directory, run the following:
 #### Unix BASH/ZSH
 ```
 $ export FLASK_APP=source/app
