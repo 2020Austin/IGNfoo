@@ -64,7 +64,6 @@ $ flask run
 > set FLASK_APP=source/app
 > flask run
 ```
-Alternatively, ```cd``` into```/source``` and execute ```flask run```.
 
 #### API
 Available endpoints are directly linked to on the flask app's index page. URLs are also listed above. All endpoints deliver data in json format. 
