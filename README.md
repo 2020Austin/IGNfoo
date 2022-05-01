@@ -18,6 +18,7 @@ Junction tables utilize two foreign keys - each referencing the primary key id v
 In theory, columns containing small strings were typed as ```VARCHAR``` to potentially support faster database searching, but SQLite does not differentiate from ```TEXT```.
 Timestamp data points were inserted into columns typed as ```DATETIME```.
 
+I created an index for the ```media.name``` column, as in practical use it's likely to be included in many ```WHERE``` clauses, and contains text. Indexing it now will speed up future queries and joins.
 
 
 All database table operations (table creation, data insertion, query) are done with sqlite3's ```cursor.execute()```  paired with raw SQL syntax. 
