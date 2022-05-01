@@ -15,8 +15,9 @@ app = Flask(__name__)
 
 # GLOBAL VARIABLES
 HTML_PATHS = r"./source/templates/" #path to html templates
-DATABASE_PATH = r"../database/ign.db" #redfined database path for flask
+DATABASE_PATH = r"./database/ign.db" #redfined database path for flask
 ABS_DB_PATH = os.path.abspath(DATABASE_PATH) #absolute db path to smooth over SQLite3 performance bugs
+print(ABS_DB_PATH)
 
 
 @app.route("/")
