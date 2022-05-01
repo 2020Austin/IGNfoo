@@ -86,6 +86,7 @@ Existing SQLite database is already included (```ign.db```), but if a new db nee
 
 
 ## Bonus Media
+Screenshot of DB structure (viewed with DB Browser for SQLite)
 
 ![Screenshot of DB structure, viewed with DB Browser](./Schema.PNG?raw=true)
 
