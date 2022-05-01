@@ -91,7 +91,11 @@ Existing SQLite database is already included (```ign.db```), but if a new db nee
 Screenshot of DB structure (viewed with DB Browser for SQLite)
 
 ![Screenshot of DB structure, viewed with DB Browser](./assets/Schema.PNG?raw=true)
+
+Screenshot of flask app API index
 ![index](./assets/Index.PNG?raw=true)
+
+Screenshot of API json response
 ![response](./assets/json.PNG?raw=true)
 
 
